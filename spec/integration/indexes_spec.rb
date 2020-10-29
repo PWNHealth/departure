@@ -119,7 +119,7 @@ describe Departure, integration: true do
       let(:direction) { :up }
 
       before do
-        ActiveRecord::Migrator.new(:up, migration_fixtures, ActiveRecord::SchemaMigration,1).migrate
+        ActiveRecord::Migrator.new(:up, migration_fixtures, ActiveRecord::SchemaMigration, 1).migrate
       end
 
       it 'executes the percona command' do
