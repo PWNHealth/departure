@@ -88,7 +88,7 @@ module Departure
 
     # Returns the database's ssl.
     #
-    # @return [String]
+    # @return [Departure::Connection::Ssl]
     def ssl_connection
       @ssl_connection ||= Departure::Connection::Ssl.new(connection_data)
     end
