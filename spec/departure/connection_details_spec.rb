@@ -50,7 +50,7 @@ describe Departure::ConnectionDetails do
 
       context 'when ssl ca is specified' do
         let(:connection_data) do
-          { host: 'foo.com:3306', user: 'root', database: 'dummy_test', sslca: '~/test.pem' }
+          { host: 'foo.com:3306', user: 'root', database: 'dummy_test', ssl_mode: :verify_ca, sslca: '~/test.pem' }
         end
         it { is_expected.to include('-h "foo.com:3306;mysql_ssl=1;mysql_ssl_client_ca=~/test.pem"') }
       end

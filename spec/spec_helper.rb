@@ -68,7 +68,7 @@ module Rails5Compatibility
   end
 
   module MigrationContext
-    def initialize(migrations_paths, schema_migration = nil)
+    def initialize(migrations_paths, _schema_migration = nil)
       super(migrations_paths)
     end
   end

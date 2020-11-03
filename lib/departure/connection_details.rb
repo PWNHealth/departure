@@ -1,3 +1,4 @@
+require 'departure/connection/ssl'
 require 'shellwords'
 module Departure
   # Holds the parameters of the DB connection and formats them to string
@@ -45,9 +46,8 @@ module Departure
     # @return [String]
     def host_argument
       host_string = host
-      if ssl_ca.present?
-        host_string += ";mysql_ssl=1;mysql_ssl_client_ca=#{ssl_ca}"
-      end
+      host_string += ssl_connection.ssl_arguments
+
       "-h \"#{host_string}\""
     end
 
@@ -86,11 +86,11 @@ module Departure
       connection_data.fetch(:port, DEFAULT_PORT)
     end
 
-    # Returns the database' SSL CA certificate.
+    # Returns the database's ssl.
     #
-    # @return [String]
-    def ssl_ca
-      connection_data.fetch(:sslca, nil)
+    # @return [Departure::Connection::Ssl]
+    def ssl_connection
+      @ssl_connection ||= Departure::Connection::Ssl.new(connection_data)
     end
   end
 end
